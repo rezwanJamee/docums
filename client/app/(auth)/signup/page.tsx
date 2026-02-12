@@ -1,5 +1,5 @@
 import { SignupForm } from './components/signup-form';
-import { Logo } from '@/components/sidebar-02/logo';
+import { Logo } from '@/components/logo';
 
 export default function SignupPage() {
   return (

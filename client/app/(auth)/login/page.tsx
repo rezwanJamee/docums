@@ -1,4 +1,4 @@
-import { Logo } from '@/components/sidebar-02/logo';
+import { Logo } from '@/components/logo';
 import { LoginForm } from './components/login-form';
 
 export default function LoginPage() {
