@@ -13,7 +13,7 @@ export function SiteHeader() {
           orientation="vertical"
           className="mx-2 data-[orientation=vertical]:h-10"
         /> */}
-        <h1 className="text-base font-medium">Documents</h1>
+        <h1 className="text-base font-medium">Home</h1>
         <div className="ml-auto flex items-center gap-3">
           <Themetoggle />
           <Button variant="ghost" size="icon">

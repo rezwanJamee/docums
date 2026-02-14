@@ -28,7 +28,7 @@ export type Route = {
   }[];
 };
 
-export default function DashboardNavigation({ routes }: { routes: Route[] }) {
+export default function DashboardNavigation({ routes, currentPath }: { routes: Route[]; currentPath: string }) {
   const { state } = useSidebar();
   const isCollapsed = state === 'collapsed';
   const [openCollapsible, setOpenCollapsible] = useState<string | null>(null);
@@ -39,6 +39,7 @@ export default function DashboardNavigation({ routes }: { routes: Route[] }) {
         const isOpen = !isCollapsed && openCollapsible === route.id;
         const hasSubRoutes = !!route.subs?.length;
 
+        console.log('Current Path:', currentPath);
         return (
           <SidebarMenuItem key={route.id}>
             {hasSubRoutes ? (
@@ -79,7 +80,13 @@ export default function DashboardNavigation({ routes }: { routes: Route[] }) {
                       {route.subs?.map((subRoute) => (
                         <SidebarMenuSubItem
                           key={`${route.id}-${subRoute.title}`}
-                          className="h-auto"
+                          // className={
+                          //   // currentPath === subRoute.link
+                          //   //   ? 'bg-muted text-foreground'
+                          //   //   : 'text-muted-foreground hover:bg-sidebar-muted hover:text-foreground'
+                          // }
+                          
+                          // "h-auto"
                         >
                           <SidebarMenuSubButton asChild>
                             <Link
@@ -97,7 +104,11 @@ export default function DashboardNavigation({ routes }: { routes: Route[] }) {
                 )}
               </Collapsible>
             ) : (
-              <SidebarMenuButton tooltip={route.title} asChild>
+              <SidebarMenuButton tooltip={route.title} asChild
+                className={
+                  currentPath === route.link ? 'bg-primary/90 text-primary-foreground rounded ease-in-out' : ''
+                }
+              >
                 <Link
                   href={route.link}
                   prefetch={true}
