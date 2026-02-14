@@ -6,12 +6,14 @@ import {
   EmptyTitle,
 } from "@/components/ui/empty"
 import { FolderIcon } from 'lucide-react';
+import { FileManager } from './(dashboard)/components/file-manager';
 
 export default function ProtectedPage() {
 
   return (
-  <div className="flex flex-col p-4">
-    Protected Page 
+  <div className="flex flex-col p-4 overflow-y-scroll">
+    {/* Protected Page  */}
+    <FileManager />
     <Empty className='gap-0 '>
       <EmptyHeader>
           <FolderIcon className="w-14 h-14 p-3 bg-muted rounded-md" />
