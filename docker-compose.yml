@@ -1,0 +1,45 @@
+services:
+  client:
+    image: client
+    container_name: docums-client
+    build: ./client/.
+    ports:
+      - "5000:3000"
+    environment:
+      - NODE_ENV=production
+    # restart: unless-stopped
+    networks:
+      - app_network
+
+  # server:
+  #   image: server-container
+  #   container_name: DocuMS-server
+  #   build: ./server/.
+  #   ports:
+  #     - "5001:8080"
+  #   environment:
+  #     - NODE_ENV=production
+  #   networks:
+  #     - app_network
+      
+  db:
+    image: postgres:17-alpine
+    container_name: postgres_db
+    environment:
+      POSTGRES_USER: db_user
+      POSTGRES_PASSWORD: db_user_1245
+      POSTGRES_DB: smallerp_db
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    ports:
+      - "5050:5432"
+    networks:
+      - app_network
+      
+volumes:
+  postgres:
+    external: false
+
+networks:
+  app_network:
+    driver: bridge
