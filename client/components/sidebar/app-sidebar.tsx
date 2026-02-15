@@ -15,32 +15,33 @@ import { Logo } from '@/components/logo';
 import type { Route } from './nav-main';
 import DashboardNavigation from '@/components/sidebar/nav-main';
 import { NavUser } from './nav-user';
+import { usePathname } from 'next/dist/client/components/navigation';
 
 const dashboardRoutes: Route[] = [
   {
     id: 'home',
     title: 'Home',
     icon: <Home className="size-4" />,
-    link: '#',
+    link: '/app',
   },
   {
     id: 'activity',
     title: 'Activity',
     icon: <History className="size-4" />,
-    link: '#',
+    link: '/app/activity',
   },
-  {
-    id: 'shared',
-    title: 'Shared with me',
-    icon: <Files className="size-4" />,
-    link: '#',
-  },
-  {
-    id: 'stared',
-    title: 'Starred',
-    icon: <Sparkles className="size-4" />,
-    link: '#',
-  }, 
+  // {
+  //   id: 'shared',
+  //   title: 'Shared with me',
+  //   icon: <Files className="size-4" />,
+  //   link: '#',
+  // },
+  // {
+  //   id: 'stared',
+  //   title: 'Starred',
+  //   icon: <Sparkles className="size-4" />,
+  //   link: '#',
+  // }, 
   {
     id: 'settings',
     title: 'Settings',
@@ -64,7 +65,8 @@ const user = {
 export function DashboardSidebar() {
   const { state } = useSidebar();
   const isCollapsed = state === 'collapsed';
-
+  const currentPath = usePathname();
+  
   return (
     <Sidebar variant="inset" collapsible="icon">
       <SidebarHeader
@@ -97,7 +99,7 @@ export function DashboardSidebar() {
         </motion.div>
       </SidebarHeader>
       <SidebarContent className="gap-4 px-2 py-4">
-        <DashboardNavigation routes={dashboardRoutes} />
+        <DashboardNavigation routes={dashboardRoutes} currentPath={currentPath} />
       </SidebarContent>
       <SidebarFooter className="px-2">
         <NavUser user={user} />

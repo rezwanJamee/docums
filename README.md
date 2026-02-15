@@ -1,4 +1,9 @@
+ <img src="./client/app/favicon.svg" width="100"> 
+
 # DocuMS
+
+`Status: In-progress`
+
 
 A complete document management service. 
 

@@ -17,6 +17,7 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 import { Bell, CircleUserRound, CreditCard, EllipsisVertical, LogOut } from 'lucide-react';
+import Link from 'next/link';
 
 export function NavUser({
   user,
@@ -28,6 +29,11 @@ export function NavUser({
   };
 }) {
   const { isMobile } = useSidebar();
+  const userNameInitials = user.name
+    .split(' ')
+    .map((namePart) => namePart.charAt(0))
+    .join('')
+    .toUpperCase();
 
   return (
     <SidebarMenu>
@@ -38,9 +44,9 @@ export function NavUser({
               size="lg"
               className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
             >
-              <Avatar className="h-8 w-8 rounded-lg grayscale">
+              <Avatar className="h-8 w-8 rounded-lg" >
                 <AvatarImage src={user.avatar} alt={user.name} />
-                <AvatarFallback className="rounded-lg">CN</AvatarFallback>
+                <AvatarFallback className="rounded-full bg-blue-700 text-white">{userNameInitials}</AvatarFallback>
               </Avatar>
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-medium">{user.name}</span>
@@ -83,10 +89,12 @@ export function NavUser({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
+            <Link href="/">
             <DropdownMenuItem>
               <LogOut />
               Log out
             </DropdownMenuItem>
+            </Link>
           </DropdownMenuContent>
         </DropdownMenu>
       </SidebarMenuItem>
