@@ -38,3 +38,7 @@ Reduced backend load
 Better scalability
 Faster uploads
 Lower infra cost
+
+## Screenshot
+
+![alt text](image.png)
